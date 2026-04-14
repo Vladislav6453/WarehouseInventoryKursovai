@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="DashBoardWindow" Height="450" Width="980">
     
+    <Window.Resources>
+        <DropShadowEffect x:Key="CardShadow"
+                          Color="#000000"
+                          BlurRadius="18"
+                          ShadowDepth="4"
+                          Opacity="0.08"/>
+        
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid Margin="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,7 +40,7 @@
                 <Button Content="☰"
                         Width="40"
                         Height="40"
-                        FontSize="18"
+                        FontSize="30"
                         Background="White"
                         BorderBrush="Transparent"
                         BorderThickness="1"
@@ -41,51 +57,36 @@
                             BorderThickness="1"
                             Padding="10"
                             Width="180"
-                            Margin="0,10,0,0">
+                            Margin="0,10,0,0"
+                            Effect="{StaticResource CardShadow}">
 
                         <StackPanel>
 
                             <Button Content="📦 Товары"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    HorizontalContentAlignment="Left"
+                                    Style="{StaticResource MenuButtonStyle}"
                                     Command="{Binding NavigateProductsCommand}"/>
                             
                             <Button Content="🏭 Поставщики"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Padding="10"
-                                    HorizontalContentAlignment="Left"
+                                    Style="{StaticResource MenuButtonStyle}"
                                     Command="{Binding NavigateSuppliersCommand}"/>
                             
                             <Button Content="📊 Движения товаров"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Padding="10"
-                                    HorizontalContentAlignment="Left"
+                                    Style="{StaticResource MenuButtonStyle}"
                                     Command="{Binding NavigateMovementsCommand}"/>
                             
                             <Button Content="📈 Отчёты"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Padding="10"
-                                    HorizontalContentAlignment="Left"
+                                    Style="{StaticResource MenuButtonStyle}"
                                     Command="{Binding NavigateReportsCommand}"/>
 
                             <Button Content="🧾 Накладные"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    HorizontalContentAlignment="Left"
+                                    Style="{StaticResource MenuButtonStyle}"
                                     Command="{Binding NavigateInvoicesCommand}"/>
                             
                             <Separator/>
 
                             <Button Content="🚪 Выход"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Padding="10"
+                                    Style="{StaticResource MenuButtonStyle}"
                                     Foreground="#EF4444"
-                                    HorizontalContentAlignment="Left"
                                     Command="{Binding LogoutCommand}"/>
                         </StackPanel>
 
@@ -128,6 +129,7 @@
                                  Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Button Content="✕"
+                                FontSize="20"
                                 Width="30"
                                 Height="30"
                                 HorizontalAlignment="Right"
