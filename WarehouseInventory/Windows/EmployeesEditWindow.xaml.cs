@@ -2,9 +2,9 @@
 
 namespace WarehouseInventory.Windows;
 
-public partial class CreateInvoiceWindow : Window
+public partial class EmployeesEditWindow : Window
 {
-    public CreateInvoiceWindow()
+    public EmployeesEditWindow()
     {
         InitializeComponent();
     }

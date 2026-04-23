@@ -43,6 +43,24 @@
             <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="SelectionUnit" Value="FullRow"/>
         </Style>
+        
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F8F9FA"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="14,7"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        </Style>
+        
+        <Style TargetType="DataGridRow">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#EEF6FF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
     </Window.Resources>
     
     <Grid>
@@ -81,7 +99,7 @@
             
             <Border Background="#34495E" Grid.Row="0">
                 <Grid>
-                    <TextBlock Text="Список товаров"
+                    <TextBlock Text="Справочник товаров"
                                FontSize="18" FontWeight="SemiBold"
                                Foreground="White" Margin="20,0,0,0"
                                VerticalAlignment="Center"/>
@@ -106,8 +124,8 @@
                 <DataGrid Grid.Row="1" ItemsSource="{Binding Products}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="200"/>
-                        <DataGridTextColumn Header="Категория" Binding="{Binding CategoryName}" Width="200"/>
-                        <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="100"/>
+                        <DataGridTextColumn Header="Категория" Binding="{Binding CategoryName}" Width="180"/>
+                        <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="130"/>
                         <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
