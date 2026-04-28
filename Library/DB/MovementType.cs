@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WarehouseInventory.DB;
+namespace Library.DB;
 
 public partial class MovementType
 {

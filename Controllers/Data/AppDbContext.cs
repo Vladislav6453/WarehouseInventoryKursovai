@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
+using Library.DB;
+namespace WarehouseInventory.Data.Controllers;
 
-namespace WarehouseInventory.DB;
-
-public partial class DbwarehouseInventoryContext : DbContext
+public partial class AppDbContext : DbContext
 {
-    public DbwarehouseInventoryContext()
+    public AppDbContext()
     {
     }
 
-    public DbwarehouseInventoryContext(DbContextOptions<DbwarehouseInventoryContext> options)
+    public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
     }
@@ -127,7 +127,7 @@ public partial class DbwarehouseInventoryContext : DbContext
                 .HasForeignKey(d => d.SupplierId)
                 .HasConstraintName("FK_Invoice_Supplier_Id");
 
-            entity.HasOne(d => d.Type).WithMany(p => p.Invoices)
+            entity.HasOne(d => d.InvoiceType).WithMany(p => p.Invoices)
                 .HasForeignKey(d => d.TypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Invoice_TypeInvoice_Id");

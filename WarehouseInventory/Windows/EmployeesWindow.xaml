@@ -194,20 +194,20 @@
                       SelectionUnit="FullRow"
                       AlternatingRowBackground="#F9FAFB">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Имя / Организация"
+                    <DataGridTextColumn Header="👤 Имя"
                                         Binding="{Binding Name}"
                                         Width="*"
                                         MinWidth="240"/>
 
-                    <DataGridTextColumn Header="Телефон"
+                    <DataGridTextColumn Header="📞 Телефон"
                                         Binding="{Binding Phone}"
                                         Width="170"/>
 
-                    <DataGridTextColumn Header="Email"
+                    <DataGridTextColumn Header="✉️ Email"
                                         Binding="{Binding Email}"
-                                        Width="260"/>
+                                        Width="210"/>
 
-                    <DataGridTextColumn Header="Адрес"
+                    <DataGridTextColumn Header="📍 Домашний адрес"
                                         Binding="{Binding Address}"
                                         Width="*"/>
                 </DataGrid.Columns>

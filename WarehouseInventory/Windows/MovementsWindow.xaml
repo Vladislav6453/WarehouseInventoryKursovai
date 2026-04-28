@@ -185,27 +185,27 @@
                       SelectionMode="Single">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Дата"
+                    <DataGridTextColumn Header="📅 Дата"
                                         Binding="{Binding Date, StringFormat=dd.MM.yyyy HH:mm}"
                                         Width="170"/>
 
-                    <DataGridTextColumn Header="Товар"
+                    <DataGridTextColumn Header="📦 Товар"
                                         Binding="{Binding ProductName}"
                                         Width="*"/>
 
-                    <DataGridTextColumn Header="Тип"
+                    <DataGridTextColumn Header="🔖 Тип"
                                         Binding="{Binding MovementType}"
                                         Width="120"/>
 
-                    <DataGridTextColumn Header="Кол-во"
+                    <DataGridTextColumn Header="🔗 Кол-во"
                                         Binding="{Binding Quantity}"
                                         Width="100"/>
 
-                    <DataGridTextColumn Header="Накладная"
+                    <DataGridTextColumn Header="🧾 Накладная"
                                         Binding="{Binding InvoiceNumber}"
                                         Width="140"/>
 
-                    <DataGridTextColumn Header="Сотрудник"
+                    <DataGridTextColumn Header="👤 Сотрудник"
                                         Binding="{Binding EmployeeName}"
                                         Width="160"/>
 

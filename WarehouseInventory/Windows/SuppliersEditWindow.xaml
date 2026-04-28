@@ -48,7 +48,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="📱 Регистрация поставщика"
+                <TextBlock Text="📦 Регистрация поставщика"
                            FontSize="22"
                            FontWeight="SemiBold"
                            Margin="0,0,0,20"/>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WarehouseInventory.DB;
+namespace Library.DB;
 
 public partial class Invoice
 {
@@ -31,5 +31,5 @@ public partial class Invoice
 
     public virtual Supplier? Supplier { get; set; }
 
-    public virtual InvoiceType Type { get; set; } = null!;
+    public virtual InvoiceType InvoiceType { get; set; } = null!;
 }

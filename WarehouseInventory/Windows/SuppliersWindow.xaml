@@ -68,7 +68,7 @@
                         Content="☰"
                         Width="42"
                         Height="42"
-                        FontSize="18"
+                        FontSize="30"
                         Background="White"
                         BorderBrush="Transparent"
                         BorderThickness="1"
@@ -215,16 +215,16 @@
                       AlternatingRowBackground="#F9FAFB">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Название"
+                    <DataGridTextColumn Header="🏷️ Имя / Организация"
                                         Binding="{Binding Name}"
                                         Width="*"
                                         MinWidth="240"/>
 
-                    <DataGridTextColumn Header="Телефон"
+                    <DataGridTextColumn Header="📞 Телефон"
                                         Binding="{Binding Phone}"
                                         Width="160"/>
 
-                    <DataGridTextColumn Header="Email"
+                    <DataGridTextColumn Header="✉️ Email"
                                         Binding="{Binding Email}"
                                         Width="260"/>
                 </DataGrid.Columns>

@@ -295,8 +295,8 @@
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="📊 " />
-                            <TextBlock Text="Остатки товаров" />
+                            <TextBlock Text="📊 "/>
+                            <TextBlock Text="Остатки товаров"/>
                         </StackPanel>
                     </TabItem.Header>
                     <Grid Margin="15">
@@ -322,8 +322,7 @@
                         <wpf:CartesianChart Grid.Row="1" Series="{Binding TopCustomersSeries}" XAxes="{Binding CustomerAxes}" YAxes="{Binding ValueAxes}"/>
                     </Grid>
                 </TabItem>
-
-                <!-- 🏭 ТОП ПОСТАВЩИКОВ -->
+                
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
