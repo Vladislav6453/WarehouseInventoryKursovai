@@ -73,5 +73,12 @@ namespace Controllers.Controllers
 
             return Ok(roles);
         }
+        
+        [HttpGet("HasAnyUsers")]
+        public async Task<IActionResult> HasAnyUsers()
+        {
+            var hasUsers = await _context.Employees.AnyAsync();
+            return Ok(new{HasUsers = hasUsers});
+        }
     }
 }

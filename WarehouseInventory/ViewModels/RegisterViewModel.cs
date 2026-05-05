@@ -10,7 +10,8 @@ namespace WarehouseInventory.ViewModels;
 
 public class RegisterViewModel : BaseViewModel
 {
-    private readonly HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
+        private Action? _close;
         private string _lastName = "";
         private string _firstName = "";
         private string _login = "";
@@ -58,15 +59,19 @@ public class RegisterViewModel : BaseViewModel
         public RegisterViewModel()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("http://localhost:5186/api/");
+            _httpClient.BaseAddress = new Uri("http://localhost:5059/api/");
             
             RegisterCommand = new RelayCommand(_ => _ = RegisterAsync());
-            GoBackCommand = new RelayCommand(_ => GoBack());
+            GoBackCommand = new RelayCommand(_ => _close?.Invoke());
             
             _ = LoadRolesAsync();
         }
 
-        public void SetPasswordBindings(object passwordBox, object confirmPasswordBox)
+        public void SetClose(Action close)
+        {
+            _close = close;
+        }
+        public void SetPasswordBinding(object passwordBox, object confirmPasswordBox)
         {
             _passwordBox = passwordBox;
             _confirmPasswordBox = confirmPasswordBox;
@@ -89,7 +94,7 @@ public class RegisterViewModel : BaseViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"❌ Ошибка загрузки ролей: {ex.Message}", "Ошибка", 
+                MessageBox.Show($"Ошибка загрузки ролей: {ex.Message}", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -98,21 +103,21 @@ public class RegisterViewModel : BaseViewModel
         {
             if (string.IsNullOrWhiteSpace(LastName))
             {
-                MessageBox.Show("❌ Введите фамилию", "Ошибка", 
+                MessageBox.Show("Введите фамилию", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(FirstName))
             {
-                MessageBox.Show("❌ Введите имя", "Ошибка", 
+                MessageBox.Show("Введите имя", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(Login))
             {
-                MessageBox.Show("❌ Введите логин", "Ошибка", 
+                MessageBox.Show("Введите логин", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -120,7 +125,7 @@ public class RegisterViewModel : BaseViewModel
             var password = GetPassword();
             if (string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("❌ Введите пароль", "Ошибка", 
+                MessageBox.Show("Введите пароль", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -128,28 +133,28 @@ public class RegisterViewModel : BaseViewModel
             var confirm = GetConfirmPassword();
             if (password != confirm)
             {
-                MessageBox.Show("❌ Пароли не совпадают", "Ошибка", 
+                MessageBox.Show("Пароли не совпадают", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (password.Length < 4)
             {
-                MessageBox.Show("❌ Пароль должен быть не менее 4 символов", "Ошибка", 
+                MessageBox.Show("Пароль должен быть не менее 4 символов", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (SelectedRole == null)
             {
-                MessageBox.Show("❌ Выберите роль", "Ошибка", 
+                MessageBox.Show("Выберите роль", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             try
             {
-                var request = new RegisterRequestDTO()
+                var request = new RegisterRequestDTO
                 {
                     Login = Login,
                     Password = password,
@@ -165,17 +170,18 @@ public class RegisterViewModel : BaseViewModel
                     MessageBox.Show("✅ Регистрация успешна!\n\nТеперь вы можете войти в систему.", 
                         "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                     OnRegisterSuccess?.Invoke();
+                    _close?.Invoke();
                 }
                 else
                 {
                     var error = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show($"❌ Ошибка регистрации: {error}", "Ошибка", 
+                    MessageBox.Show($"Ошибка регистрации: {error}", "Ошибка", 
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"❌ Ошибка подключения: {ex.Message}", "Ошибка", 
+                MessageBox.Show($"Ошибка подключения: {ex.Message}", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

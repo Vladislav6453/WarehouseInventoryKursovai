@@ -9,11 +9,14 @@ public partial class AppDbContext : DbContext
 {
     public AppDbContext()
     {
+        
     }
 
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
-    {
+    {/*
+        Database.EnsureDeleted();
+        Database.EnsureCreated();*/
     }
 
     public virtual DbSet<Category> Categories { get; set; }
@@ -211,7 +214,22 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Phone).HasMaxLength(255);
         });
 
-        OnModelCreatingPartial(modelBuilder);
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<EmployeeRole>().HasData(
+            new EmployeeRole{Id=1,Role = "Админ"},
+            new EmployeeRole{Id=2,Role = "Сотрудник"},
+            new EmployeeRole{Id=3,Role = "Менеджер"}
+        );
+            
+        modelBuilder.Entity<MovementType>().HasData(
+            new MovementType{Id=1,Name = "Приход"},
+            new MovementType{Id=2,Name = "Расход"}
+        );
+        
+        modelBuilder.Entity<InvoiceType>().HasData(
+            new InvoiceType{Id=1,Type = "Приходная"},
+            new InvoiceType{Id=2,Type = "Расходная"}
+        );
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

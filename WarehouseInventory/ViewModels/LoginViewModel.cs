@@ -13,6 +13,7 @@ public class LoginViewModel : BaseViewModel
 {
     private readonly HttpClient _httpClient;
         private string _login = "";
+        private Action? _close;
         private object? _passwordBox;
 
         public string Login
@@ -29,12 +30,16 @@ public class LoginViewModel : BaseViewModel
         public LoginViewModel()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("http://localhost:5186/api/");
+            _httpClient.BaseAddress = new Uri("http://localhost:5059/api/");
             
             LoginCommand = new RelayCommand(_ => _ = LoginAsync());
             GoToRegisterCommand = new RelayCommand(_ => GoToRegister());
         }
 
+        public void SetClose(Action close)
+        {
+            _close = close;
+        }
         public void SetPasswordBinding(object passwordBox)
         {
             _passwordBox = passwordBox;
@@ -49,7 +54,7 @@ public class LoginViewModel : BaseViewModel
         {
             if (string.IsNullOrWhiteSpace(Login))
             {
-                MessageBox.Show("❌ Введите логин", "Ошибка", 
+                MessageBox.Show("Введите логин", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -57,7 +62,7 @@ public class LoginViewModel : BaseViewModel
             var password = GetPassword();
             if (string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("❌ Введите пароль", "Ошибка", 
+                MessageBox.Show("Введите пароль", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -78,19 +83,19 @@ public class LoginViewModel : BaseViewModel
                     }
                     else
                     {
-                        MessageBox.Show("❌ Неверный логин или пароль", "Ошибка входа", 
+                        MessageBox.Show("Неверный логин или пароль", "Ошибка входа", 
                             MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("❌ Неверный логин или пароль", "Ошибка входа", 
+                    MessageBox.Show("Неверный логин или пароль", "Ошибка входа", 
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"❌ Ошибка подключения: {ex.Message}", "Ошибка", 
+                MessageBox.Show($"Ошибка подключения: {ex.Message}", "Ошибка", 
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

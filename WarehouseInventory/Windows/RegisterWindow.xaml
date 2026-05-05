@@ -4,10 +4,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:WarehouseInventory.Windows"
+        xmlns:viewModels="clr-namespace:WarehouseInventory.ViewModels"
         mc:Ignorable="d"
         Title="RegisterWindow" Height="800" Width="800">
-      <Window.Resources>
-          
+    
+    <Window.DataContext>
+        <viewModels:RegisterViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
         <DropShadowEffect x:Key="CardShadow"
                           BlurRadius="30"
                           ShadowDepth="5"
@@ -152,7 +156,7 @@
                 <TextBlock Text="Роль" Margin="0,0,0,6"/>
                 <ComboBox ItemsSource="{Binding Roles}"
                           SelectedItem="{Binding SelectedRole}"
-                          DisplayMemberPath="RoleName"
+                          DisplayMemberPath="Role"
                           Margin="0,0,0,25"/>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center">

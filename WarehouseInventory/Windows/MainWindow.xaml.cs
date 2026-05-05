@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WarehouseInventory.ViewModels;
 
 namespace WarehouseInventory;
 
@@ -19,5 +20,11 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+            
+        var vm = DataContext as MainViewModel;
+        vm.OnLogout += () =>
+        {
+            Close();
+        };
     }
 }

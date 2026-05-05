@@ -189,3 +189,4 @@ C:\Users\student\RiderProjects\WarehouseInventory\WarehouseInventory\bin\Debug\n
 C:\Users\student\RiderProjects\WarehouseInventory\WarehouseInventory\bin\Debug\net9.0-windows\Library.pdb
 C:\Users\student\RiderProjects\WarehouseInventory\WarehouseInventory\obj\Debug\net9.0-windows\Windows\LoginWindow.baml
 C:\Users\student\RiderProjects\WarehouseInventory\WarehouseInventory\obj\Debug\net9.0-windows\Windows\RegisterWindow.baml
+C:\Users\student\RiderProjects\WarehouseInventory\WarehouseInventory\obj\Debug\net9.0-windows\GeneratedInternalTypeHelper.g.cs

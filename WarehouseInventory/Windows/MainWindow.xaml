@@ -4,12 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseInventory"
+        xmlns:viewModels="clr-namespace:WarehouseInventory.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="950"
         MaxHeight="800" MaxWidth="1300"
         WindowStartupLocation="CenterScreen"
         Background="#ECF0F1">
         
+    <Window.DataContext>
+        <viewModels:MainViewModel/>
+    </Window.DataContext>
+    
     <Window.Resources>
         <Style x:Key="NavButtonStyle" TargetType="Button">
             <Setter Property="Margin" Value="10,5"/>
@@ -121,7 +126,7 @@
                     <Button Content="Удалить" Width="100" Height="30" Background="#E74C3C" Foreground="White"/>
                 </StackPanel>
                 
-                <DataGrid Grid.Row="1" ItemsSource="{Binding Products}">
+                <DataGrid Grid.Row="1" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="🧾 Название" Binding="{Binding Name}" Width="200"/>
                         <DataGridTextColumn Header="🏷️ Категория" Binding="{Binding CategoryName}" Width="180"/>
