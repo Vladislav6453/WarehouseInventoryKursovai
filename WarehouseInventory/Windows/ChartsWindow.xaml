@@ -21,6 +21,14 @@
                           ShadowDepth="2"
                           Opacity="0.06"/>
         
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        
         <Style TargetType="TabItem">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -103,23 +111,23 @@
 
                             <Button Content="📦 Товары"
                                     Style="{StaticResource MenuButtonStyle}"
-                                    Command="{Binding NavigateProductsCommand}"/>
+                                    Command="{Binding NavigateProductCommand}"/>
                             
                             <Button Content="🏭 Поставщики"
                                     Style="{StaticResource MenuButtonStyle}"
-                                    Command="{Binding NavigateSuppliersCommand}"/>
+                                    Command="{Binding NavigateToCustomerCommand}"/>
                             
-                            <Button Content="📊 Движения товаров"
+                            <Button Content="⏩ Движения"
                                     Style="{StaticResource MenuButtonStyle}"
-                                    Command="{Binding NavigateMovementsCommand}"/>
-                            
-                            <Button Content="📈 Отчёты"
-                                    Style="{StaticResource MenuButtonStyle}"
-                                    Command="{Binding NavigateReportsCommand}"/>
+                                    Command="{Binding NavigateToMovementCommand}"/>
 
-                            <Button Content="🧾 Накладные"
+                            <Button Content="✉️ Накладные"
                                     Style="{StaticResource MenuButtonStyle}"
-                                    Command="{Binding NavigateInvoicesCommand}"/>
+                                    Command="{Binding NavigateToInvoiceCommand}"/>
+                            
+                            <Button Content="👤 Клиенты"
+                                    Style="{StaticResource MenuButtonStyle}"
+                                    Command="{Binding NavigateToSupplierCommand}"/>
                             
                             <Separator/>
 
