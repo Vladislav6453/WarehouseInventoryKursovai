@@ -81,17 +81,14 @@
                            Foreground="White" Margin="10,20,10,30"
                            HorizontalAlignment="Center"/>
                 <StackPanel>
-                    <Button Content="🏠 Дашборд" Command="{Binding NavigateCommand}" CommandParameter="Dashboard" Style="{StaticResource NavButtonStyle}"/>
-                    <Button Content="📦 Товары" Command="{Binding NavigateCommand}" CommandParameter="Products" Style="{StaticResource NavButtonStyle}"/>
-                    <Button Content="📋 Движения" Command="{Binding NavigateCommand}" CommandParameter="StockMovements" Style="{StaticResource NavButtonStyle}"/>
-                    <Button Content="📊 Диаграммы" Command="{Binding NavigateCommand}" CommandParameter="Charts" Style="{StaticResource NavButtonStyle}"/>
-                    <Button Content="👥 Поставщики" Command="{Binding NavigateCommand}" CommandParameter="Suppliers" Style="{StaticResource NavButtonStyle}"/>
-                    <Button Content="👤 Клиенты" Command="{Binding NavigateCommand}" CommandParameter="Customers" Style="{StaticResource NavButtonStyle}"/>
-                    <Button Content="📈 Отчёты" Command="{Binding NavigateCommand}" CommandParameter="Reports" Style="{StaticResource NavButtonStyle}"/>
+                    <Button Content="📈 Графики" Command="{Binding NavigateToChartCommand}" CommandParameter="Dashboard" Style="{StaticResource NavButtonStyle}"/>
+                    <Button Content="⏩ Движения" Command="{Binding NavigateToMovementCommand}" CommandParameter="StockMovements" Style="{StaticResource NavButtonStyle}"/>
+                    <Button Content="✉️ Накладные" Command="{Binding NavigateToInvoiceCommand}" CommandParameter="Charts" Style="{StaticResource NavButtonStyle}"/>
+                    <Button Content="🏭 Поставщики" Command="{Binding NavigateToCustomerCommand}" CommandParameter="Suppliers" Style="{StaticResource NavButtonStyle}"/>
+                    <Button Content="👤 Клиенты" Command="{Binding NavigateToSupplierCommand}" CommandParameter="Customers" Style="{StaticResource NavButtonStyle}"/>
                 </StackPanel>
 
                 <Separator Margin="10,20,10,10" Background="#34495E"/>
-                <TextBlock Text="{Binding CurrentEmployeeName}" Foreground="White" Margin="10,10"/>
                 <Button Content="🚪 Выход" Command="{Binding LogoutCommand}" Background="#E74C3C" Foreground="White" Style="{StaticResource NavButtonStyle}"/>
             </StackPanel>
         </Border>
@@ -122,7 +119,7 @@
                              Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
                              VerticalContentAlignment="Center"/>
                     <Button Content="Добавить" Width="100" Height="30" Background="#27AE60" Foreground="White" Margin="0,0,10,0"/>
-                    <Button Content="Изменить" Width="100" Height="30" Background="#F39C12" Foreground="White" Margin="0,0,10,0"/>
+                    <Button Content="Изменить" Width="100" Height="30" Background="#F39C12" Foreground="White" Margin="0,0,10,0" Command="{Binding EditProductCommand}"/>
                     <Button Content="Удалить" Width="100" Height="30" Background="#E74C3C" Foreground="White"/>
                 </StackPanel>
                 

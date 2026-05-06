@@ -230,6 +230,12 @@ public partial class AppDbContext : DbContext
             new InvoiceType{Id=1,Type = "Приходная"},
             new InvoiceType{Id=2,Type = "Расходная"}
         );
+        
+        modelBuilder.Entity<Product>().HasData(
+            new Product{Id=1,Name = "Смартфон iPhone 15", Description = "", Price = 15000, Quantity = 1, CategoryId = 1 },
+            new Product{Id=2,Name = "Ноутбук MacBook Air", Description = "", Price = 999000, Quantity = 0, CategoryId = 1 },
+            new Product{Id=3,Name = "Мышь Logitech", Description = "", Price = 2500, Quantity = 2, CategoryId = 2 }
+        );
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

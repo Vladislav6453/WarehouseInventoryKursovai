@@ -41,6 +41,11 @@ public class MainViewModel : BaseViewModel
 
         public ICommand EditProductCommand { get; }
         public ICommand LogoutCommand { get; }
+        public ICommand NavigateToChartCommand { get; }
+        public ICommand NavigateToMovementCommand { get; }
+        public ICommand NavigateToInvoiceCommand { get; }
+        public ICommand NavigateToCustomerCommand { get; }
+        public ICommand NavigateToSupplierCommand { get; }
 
         public event Action? OnLogout;
 
@@ -48,6 +53,8 @@ public class MainViewModel : BaseViewModel
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("http://localhost:5059/api/");
+            
+            
             
             EditProductCommand = new RelayCommand(_ => OpenProductEditWindow(SelectedProduct), _ => SelectedProduct != null);
             LogoutCommand = new RelayCommand(_ => OnLogout?.Invoke());
@@ -111,6 +118,6 @@ public class MainViewModel : BaseViewModel
             window.ShowDialog();
             _ = LoadProductsAsync();
         }
-    
-    
+        
+        
 }
