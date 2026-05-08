@@ -14,9 +14,10 @@ public partial class LoginWindow : Window
         (DataContext as LoginViewModel)?.SetClose(Close);
         vm.OnLoginSuccess += () =>
         {
-            Close();
+            
             var mainWindow = new MainWindow();
             mainWindow.Show();
+            Close();
         };
     }
 

@@ -57,12 +57,12 @@ namespace WarehouseInventory.ViewModels
 
         public ProductEditViewModel(ProductDTO product)
         {
+            
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("http://localhost:5059/api/");
             
             SaveCommand = new RelayCommand(_ => _ = SaveAsync());
             CancelCommand = new RelayCommand(_ => _close?.Invoke());
-            
             _productId = product?.Id ?? 0;
             Name = product?.Name ?? "";
             Description = product?.Description ?? "";

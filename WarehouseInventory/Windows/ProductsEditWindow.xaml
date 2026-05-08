@@ -9,9 +9,6 @@
         Title="ProductEditWindow" Height="620" Width="500">
     <Window.Resources>
 
-        <Window.DataContext>
-            <viewModels:ProductEditViewModel/>
-        </Window.DataContext>
         
         <DropShadowEffect x:Key="CardShadow"
                           Color="#000000"
