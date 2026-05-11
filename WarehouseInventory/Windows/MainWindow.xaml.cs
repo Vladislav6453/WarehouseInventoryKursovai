@@ -20,8 +20,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-            
         var vm = DataContext as MainViewModel;
+        vm.SetCurrentWindow(this);
         vm.OnLogout += () =>
         {
             Close();

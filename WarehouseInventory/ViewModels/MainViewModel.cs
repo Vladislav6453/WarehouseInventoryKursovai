@@ -15,6 +15,8 @@ public class MainViewModel : BaseViewModel
         private ObservableCollection<ProductDTO> _products = new();
         private string _searchQuery = "";
         private ProductDTO? _selectedProduct;
+        private bool _isMenuOpen;
+        private Window? _currentWindow;
 
         public ObservableCollection<ProductDTO> Products
         {
@@ -39,6 +41,12 @@ public class MainViewModel : BaseViewModel
             set { _selectedProduct = value; OnPropertyChanged(); }
         }
 
+        public bool IsMenuOpen
+        {
+            get => _isMenuOpen;
+            set { _isMenuOpen = value; OnPropertyChanged(); }
+        }
+
         public ICommand EditProductCommand { get; }
         public ICommand LogoutCommand { get; }
         public ICommand NavigateToChartCommand { get; }
@@ -54,12 +62,27 @@ public class MainViewModel : BaseViewModel
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("http://localhost:5059/api/");
             
-            
-            
             EditProductCommand = new RelayCommand(_ => OpenProductEditWindow(SelectedProduct), _ => SelectedProduct != null);
             LogoutCommand = new RelayCommand(_ => OnLogout?.Invoke());
+
+            NavigateToChartCommand = new RelayCommand(_ => NavigateToChart());
             
             _ = LoadProductsAsync();
+        }
+
+        public void SetCurrentWindow(Window window)
+        {
+            _currentWindow = window;
+        }
+
+        private void NavigateToChart()
+        {
+            IsMenuOpen = false;
+            var chartsWindow = new ChartsWindow();
+            chartsWindow.Owner = _currentWindow;
+            chartsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            chartsWindow.Show();
+            _currentWindow?.Hide();
         }
 
         private async System.Threading.Tasks.Task LoadProductsAsync()

@@ -96,7 +96,7 @@
                 
                 <Popup IsOpen="{Binding IsMenuOpen}"
                        Placement="Bottom"
-                       StaysOpen="False">
+                       StaysOpen="True">
 
                     <Border Background="White"
                             CornerRadius="12"

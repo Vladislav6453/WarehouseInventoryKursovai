@@ -10,5 +10,6 @@ public partial class ChartsWindow : Window
         InitializeComponent();
         var vm = new ChartsViewModel();
         DataContext = vm;
+        vm.SetCurrentWindow(this);
     }
 }

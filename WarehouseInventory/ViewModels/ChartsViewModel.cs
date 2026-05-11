@@ -15,7 +15,7 @@ namespace WarehouseInventory.ViewModels
 {
     public class ChartsViewModel : BaseViewModel
     {
-     private readonly HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
         private DateTime _startDate = DateTime.Now.AddDays(-30);
         private DateTime _endDate = DateTime.Now;
         
@@ -32,6 +32,8 @@ namespace WarehouseInventory.ViewModels
         private ObservableCollection<ISeries> _stockSeries = new();
         private ObservableCollection<ISeries> _topCustomersSeries = new();
         private ObservableCollection<ISeries> _topSuppliersSeries = new();
+        private bool _isMenuOpen;
+        private Window? _currentWindow;
         
         public ObservableCollection<ISeries> MovementSeries
         {
@@ -114,6 +116,8 @@ namespace WarehouseInventory.ViewModels
                 _ = LoadTopProductsAsync();
             }
         }
+
+        
         
         public ObservableCollection<Axis> DateAxes { get; } = new()
         {
@@ -189,7 +193,14 @@ namespace WarehouseInventory.ViewModels
             "По сумме"
         };
         
+        public bool IsMenuOpen
+        {
+            get => _isMenuOpen;
+            set { _isMenuOpen = value; OnPropertyChanged(); }
+        }
+        public ICommand ToggleMenuCommand { get; }
         public ICommand RefreshCommand { get; }
+        public ICommand NavigateProductCommand { get; }
         public ICommand SetWeekCommand { get; }
         public ICommand SetMonthCommand { get; }
         public ICommand SetQuarterCommand { get; }
@@ -198,15 +209,32 @@ namespace WarehouseInventory.ViewModels
         public ChartsViewModel()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("http://localhost:5186/api/");
+            _httpClient.BaseAddress = new Uri("http://localhost:5059/api/");
 
+            ToggleMenuCommand = new RelayCommand(_ => IsMenuOpen = !IsMenuOpen);
             RefreshCommand = new RelayCommand(_ => _ = LoadAllDataAsync());
             SetWeekCommand = new RelayCommand(_ => SetPeriod(7, "Последние 7 дней"));
             SetMonthCommand = new RelayCommand(_ => SetPeriod(30, "Последние 30 дней"));
             SetQuarterCommand = new RelayCommand(_ => SetPeriod(90, "Последние 90 дней"));
             SetYearCommand = new RelayCommand(_ => SetPeriod(365, "Последние 365 дней"));
 
+            NavigateProductCommand = new RelayCommand(_ => NavigateProduct());
             _ = LoadAllDataAsync();
+        }
+        
+        public void SetCurrentWindow(Window window)
+        {
+            _currentWindow = window;
+        }
+        
+        private void NavigateProduct()
+        {
+            IsMenuOpen = false;
+            var productsWindow = new MainWindow();
+            productsWindow.Owner = _currentWindow;
+            productsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            productsWindow.Show();
+            _currentWindow?.Hide();
         }
 
         private void SetPeriod(int days, string periodName)
