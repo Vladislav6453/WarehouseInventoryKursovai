@@ -9,6 +9,7 @@
         Title="ChartsWindow" Height="800" Width="1300">
     <Window.Resources>
 
+        <!-- ТЕНИ -->
         <DropShadowEffect x:Key="CardShadow"
                           Color="#000000"
                           BlurRadius="20"
@@ -20,15 +21,61 @@
                           BlurRadius="12"
                           ShadowDepth="2"
                           Opacity="0.06"/>
+
+        <DropShadowEffect x:Key="PopupShadow"
+                          Color="#000000"
+                          BlurRadius="25"
+                          ShadowDepth="3"
+                          Opacity="0.15"/>
         
+        <!-- СТИЛЬ КНОПОК МЕНЮ -->
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="Margin" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                Margin="4,2">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#F3F4F6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
-        
+
+        <!-- СТИЛЬ ЗАГОЛОВКА POPUP -->
+        <Style x:Key="PopupHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#6B7280"/>
+            <Setter Property="Margin" Value="12,12,12,8"/>
+        </Style>
+
+        <!-- СТИЛЬ ДЛЯ SEPARATOR -->
+        <Style TargetType="Separator">
+            <Setter Property="Height" Value="1"/>
+            <Setter Property="Background" Value="#E5E7EB"/>
+            <Setter Property="Margin" Value="8,8"/>
+        </Style>
+
+        <!-- СТИЛЬ ДЛЯ TABITEM -->
         <Style TargetType="TabItem">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -48,6 +95,7 @@
             </Style.Triggers>
         </Style>
         
+        <!-- СТИЛЬ КАРТОЧЕК СТАТИСТИКИ -->
         <Style x:Key="StatCardStyle" TargetType="Border">
             <Setter Property="Background" Value="White"/>
             <Setter Property="CornerRadius" Value="14"/>
@@ -55,7 +103,8 @@
             <Setter Property="Effect" Value="{StaticResource SoftShadow}"/>
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
-        
+
+        <!-- СТИЛЬ БЫСТРЫХ КНОПОК ФИЛЬТРА -->
         <Style x:Key="QuickFilterButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="#D1D5DB"/>
@@ -70,8 +119,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
-
     </Window.Resources>
 
     <Grid Margin="24">
@@ -89,26 +136,41 @@
                         Height="60"
                         FontSize="40"
                         Margin="0 0 20 0"
-                        Background="White"
+                        Background="Transparent"
                         BorderBrush="Transparent"
                         BorderThickness="1"
+                        Cursor="Hand"
                         Command="{Binding ToggleMenuCommand}"/>
                 
                 <Popup IsOpen="{Binding IsMenuOpen}"
+                       PlacementTarget="{Binding ElementName=MenuButton}"
                        Placement="Bottom"
-                       StaysOpen="True">
+                       StaysOpen="False"
+                       AllowsTransparency="True">
 
                     <Border Background="White"
-                            CornerRadius="12"
+                            Width="260"
+                            CornerRadius="16"
                             BorderBrush="#E5E7EB"
                             BorderThickness="1"
-                            Padding="10"
-                            Width="180"
-                            Margin="0,10,0,0"
-                            Effect="{StaticResource CardShadow}">
+                            Effect="{StaticResource PopupShadow}"
+                            Margin="0,8,0,0">
 
-                        <StackPanel>
+                        <StackPanel Margin="8">
 
+                            <Border Background="#F8FAFC"
+                                    CornerRadius="12"
+                                    Margin="0,0,0,8">
+                                <StackPanel Margin="12,12,12,12">
+                                    <TextBlock Text="📂 НАВИГАЦИЯ"
+                                               Style="{StaticResource PopupHeaderStyle}"/>
+                                    <TextBlock Text="Перемещение между разделами"
+                                               FontSize="11"
+                                               Foreground="#9CA3AF"
+                                               Margin="12,4,12,0"/>
+                                </StackPanel>
+                            </Border>
+                            
                             <Button Content="📦 Товары"
                                     Style="{StaticResource MenuButtonStyle}"
                                     Command="{Binding NavigateProductCommand}"/>
